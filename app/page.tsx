@@ -1,9 +1,17 @@
-import Image from "next/image";
+"use client";
+import Header from "@/components/templates/Header";
+import { useState } from "react";
+import Dashboard from "./pages/Dashboard";
 
 export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
 
-    </div>
+
+  return (
+    <>
+     
+      <Dashboard />
+    </>
   );
 }
+
+
