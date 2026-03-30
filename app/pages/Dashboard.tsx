@@ -9,8 +9,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Dashboard() {
-
-
   return (
     <div className="mt-8 flex flex-col items-center justify-center gap-6 h-screen">
       <p className="text-7xl font-mono font-bold bg-gradient-to-r from-white to-sky-400 bg-clip-text text-transparent">
@@ -18,7 +16,9 @@ export default function Dashboard() {
       </p>
       <div className="flex flex-col items-center justify-center gap-4">
         <URLForm />
-        <p className="text-white text-xs font-medium font-mono">Instant technical audit for modern web stacks.</p>
+        <p className="text-white text-xs font-medium font-mono">
+          Instant technical audit for modern web stacks.
+        </p>
       </div>
       <div className="grid md:grid-cols-2 mt-32 lg:grid-cols-3 gap-4 lg:gap-8">
         <DescriptionCard icon={<Package className="text-purple-200" />} title="Bundle Analysis" description="Deep-dive into dependency trees and tree-shaking efficiency to eliminate dead code." />
@@ -31,17 +31,16 @@ export default function Dashboard() {
 
 
 const URLForm = () => {
+  const router = useRouter();
   const { loading, error, setError, analyze } = useAnalyze();
   const [url, setUrl] = useState("");
 
-  const router = useRouter();
 
   const handleAnalyze = async () => {
     const data = await analyze(url);
-    if (data) {
-      router.push(`/results?url=${encodeURIComponent(url)}`);
-    }
+    if (data) router.push(`/results?url=${encodeURIComponent(url)}`);
   }
+
   return (
     <>
       <form onSubmit={(e) => e.preventDefault()} className="relative flex items-center gap-2 text-slate-400 px-4 py-1 rounded-xl border border-slate-700/50">
