@@ -83,19 +83,19 @@ export default function Results() {
 function Heading() {
     const searchParams = useSearchParams()
     return (
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col-reverse md:flex-row md:items-start md:justify-between gap-4">
             <div className="flex flex-col gap-2">
                 <p className="text-4xl font-mono font-bold bg-gradient-to-r from-white to-sky-400 bg-clip-text text-transparent">
                     RESULT ANALYSIS
                 </p>
-                <span className="text-slate-400">
-                    URL : {searchParams.get("url")}
+                <span className="text-slate-400 break-all">
+                    URL : <span className="text-white">{searchParams.get("url")}</span>
                 </span>
                 <span className="flex items-center gap-2 text-slate-400">
                     <Calendar className="size-5" /> Report generated on {format(new Date(), "PPP")}
                 </span>
             </div>
-            <Link href="/" className="text-lg font-medium"> ← Back</Link>
+            <Link href="/" className="text-lg font-medium whitespace-nowrap"> ← Back</Link>
         </div>
     )
 }
@@ -109,7 +109,7 @@ function PerformanceInsight({ metrics, suggestions }: {
             <Card className="m-0 p-4 md:p-8 lg:p-16 lg:col-span-2 lg:flex-row font-mono rounded-sm bg-slate-800 text-slate-50 font-medium flex flex-col items-start gap-4 md:gap-8 lg:gap-16">
                 <RadialScore score={metrics.score} />
                 <div className="flex flex-col gap-2">
-                    <span className="text-2xl text-slate-400" >Performance Insight</span>
+                    <span className="text-xl md:text-2xl text-slate-400" >Performance Insight</span>
                     <p className="text-slate-400 text-sm">
                         {metrics.lcp > 2500
                             ? "Your app is experiencing slow load times. Large content rendering is the main bottleneck."
@@ -119,8 +119,8 @@ function PerformanceInsight({ metrics, suggestions }: {
             </Card>
             <Card className="m-0 p-4 md:p-8 lg:flex-row font-mono rounded-sm bg-slate-800 text-slate-50 font-medium flex flex-col items-start gap-4 md:gap-8 lg:gap-16">
                 <div className="flex flex-col gap-2">
-                    <span className="text-2xl text-slate-400" >Top Fixes</span>
-                    <p className="text-slate-400 text-sm">
+                    <span className="text-xl md:text-2xl text-slate-400" >Top Fixes</span>
+                    <div className="text-slate-400 text-sm">
                         <ul className="flex flex-col gap-4 text-sm text-slate-300">
                             {suggestions.map((s, i) => (
                                 <li key={i} className="flex justify-between gap-2">
@@ -129,7 +129,7 @@ function PerformanceInsight({ metrics, suggestions }: {
                                 </li>
                             ))}
                         </ul>
-                    </p>
+                    </div>
                 </div>
             </Card>
         </div>
@@ -138,7 +138,7 @@ function PerformanceInsight({ metrics, suggestions }: {
 
 function Metrics({ metrics }: { metrics: any }) {
     return (
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
             <MetricCard title="Bundle Size"
                 value={`${(metrics.unusedJS / 1024).toFixed(0)} KB`}
                 description='Reduce unused JavaScript (use code splitting / remove heavy libs)'
@@ -181,14 +181,14 @@ function MetricCard({ title, value, status, contentTitle, description }: any) {
                 : "border-b-red-400";
 
     return (
-        <Card className={`bg-slate-700 font-mono rounded-xl p-4 flex flex-col gap-2 border-b-4 ${borderColor}`}>
+        <Card className={`bg-slate-700 font-mono rounded-xl py-2 px-4 md:py-4 flex flex-col gap-2 border-b-4 ${borderColor}`}>
             <div className="flex items-center justify-between">
                 <p className="text-slate-100 text-sm">{title}</p>
                 <TooltipWrap content={
-                    <div className="flex flex-col gap-2">
+                    <span className="flex flex-col gap-2">
                         {contentTitle && <span className="text-sm font-medium">{contentTitle}</span>}
                         <span>{description}</span>
-                    </div>}>
+                    </span>}>
                     <Info className="size-5 text-slate-400" />
                 </TooltipWrap>
             </div>
@@ -212,9 +212,9 @@ function RadialScore({ score }: { score: number }) {
     const color = getColor()
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="mx-auto flex flex-col items-center">
             <div
-                className="w-48 h-48 flex items-center justify-center rounded-full"
+                className="w-32 h-32 md:w-48 md:h-48 flex items-center justify-center rounded-full"
                 style={{
                     background: `
             radial-gradient(closest-side, #0b1326 79%, transparent 80% 100%),

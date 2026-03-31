@@ -10,8 +10,8 @@ import { useState } from "react";
 
 export default function Dashboard() {
   return (
-    <div className="mt-8 flex flex-col items-center justify-center gap-6 h-screen">
-      <p className="text-7xl font-mono font-bold bg-gradient-to-r from-white to-sky-400 bg-clip-text text-transparent">
+    <div className="mt-8 flex flex-col items-center justify-center gap-6">
+      <p className="text-4xl md:text-5xl lg:text-7xl font-mono font-bold bg-gradient-to-r from-white to-sky-400 bg-clip-text text-transparent">
         PERFORMANCE LENS
       </p>
       <div className="flex flex-col items-center justify-center gap-4">
@@ -43,15 +43,17 @@ const URLForm = () => {
 
   return (
     <>
-      <form onSubmit={(e) => e.preventDefault()} className="relative flex items-center gap-2 text-slate-400 px-4 py-1 rounded-xl border border-slate-700/50">
+      <form onSubmit={(e) => e.preventDefault()} className="relative flex flex-col md:flex-row md:items-center gap-2 text-slate-400 w-full p-1 lg:px-2 rounded-xl border border-slate-700/50">
         <div className="pointer-events-none absolute -inset-2 rounded-xl bg-blue-500/20 blur-xl opacity-60"></div>
+       <div className="relative flex items-center gap-2">
         <Globe className="size-6 text-slate-400 relative z-10" />
         <Input
           value={url}
           onChange={(e) => { setUrl(e.target.value); setError("") }}
-          className="relative z-10 h-12 w-sm border-none bg-transparent text-white placeholder:text-slate-400 font-medium outline-none focus-visible:ring-0"
+          className="relative z-10 h-9 md:h-10 lg:h-12 lg:w-sm w-full border-none bg-transparent text-white placeholder:text-slate-400 font-medium outline-none focus-visible:ring-0"
           placeholder="https://example.com"
-        />
+          />
+          </div>
         <Button disabled={loading || !url || (error !== "")} onClick={handleAnalyze} className="h-12"> <span className="font-bold"> ANALYZE</span> {loading ? <Loader className="ml-2 fill-blue-950 animate-spin" /> : <Zap className="ml-2 fill-blue-950" />} </Button>
       </form>
       {error && <span className="text-sm text-red-400">{error}</span>}

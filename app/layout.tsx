@@ -29,9 +29,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col  bg bg-slate-900">
+      <body className="min-h-full overflow-auto flex flex-col  bg bg-slate-900">
         <Header />
-        <div className="mt-15">
+        <div className="mt-15 p-4">
           <TooltipProvider>{children}</TooltipProvider>
         </div>
       </body>
