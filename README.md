@@ -8,7 +8,7 @@ It transforms raw performance data into **clear, actionable insights** — so yo
 
 ## 🌐 Live Demo
 
-🔗 https://your-deployed-link.com
+🔗 [https://your-deployed-link.com](https://perflensanalyzer.netlify.app/)
 
 ---
 <img width="1470" height="794" alt="image" src="https://github.com/user-attachments/assets/61056c42-38c1-4d26-96dd-b441781ab02c" />
